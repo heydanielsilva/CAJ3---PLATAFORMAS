@@ -1,0 +1,5 @@
+{
+  "name": "Platform Backlog Dashboard",
+  "description": "A high-performance visual dashboard for monitoring activities and pending tasks across multiple platforms, integrated with Google Sheets data and powered by Gemini AI for smart insights.",
+  "requestFramePermissions": []
+}
