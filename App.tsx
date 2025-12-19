@@ -488,14 +488,6 @@ const App: React.FC = () => {
   const renderMap = () => {
     const center: [number, number] = mapPoints.length > 0 ? [mapPoints[0].latitude, mapPoints[0].longitude] : [-15.7801, -47.9292];
     
-    // Simple Solid Marker Icon
-    const simpleIcon = L.divIcon({
-      className: 'custom-div-icon',
-      html: `<div class="map-marker"></div>`,
-      iconSize: [14, 14],
-      iconAnchor: [7, 7]
-    });
-
     return (
       <div className="space-y-8 animate-in zoom-in-95 duration-500">
         <div className="bg-white rounded-[32px] p-8 shadow-sm border border-slate-100 relative overflow-hidden">
@@ -513,16 +505,28 @@ const App: React.FC = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
                 url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               />
-              {mapPoints.map((point, idx) => (
-                <Marker key={idx} position={[point.latitude, point.longitude]} icon={simpleIcon}>
-                  <Popup>
-                    <div className="p-1">
-                      <p className="text-xs font-black uppercase text-[#00378b] mb-1">{point.nome}</p>
-                      <p className="text-[10px] text-slate-600 leading-tight">{point.descricao || 'Sem descrição adicional.'}</p>
-                    </div>
-                  </Popup>
-                </Marker>
-              ))}
+              {mapPoints.map((point, idx) => {
+                const label = point.aeg || (idx + 1).toString();
+                const labeledIcon = L.divIcon({
+                  className: 'custom-div-icon',
+                  html: `<div class="map-marker">${label}</div>`,
+                  iconSize: [24, 24],
+                  iconAnchor: [12, 12]
+                });
+                return (
+                  <Marker key={idx} position={[point.latitude, point.longitude]} icon={labeledIcon}>
+                    <Popup>
+                      <div className="p-1 min-w-[120px]">
+                        <p className="text-xs font-black uppercase text-[#00378b] mb-1">{point.nome}</p>
+                        <p className="text-[10px] text-slate-600 leading-tight font-medium">{point.descricao || 'Sem descrição adicional.'}</p>
+                        <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between">
+                          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">AEG: {label}</span>
+                        </div>
+                      </div>
+                    </Popup>
+                  </Marker>
+                );
+              })}
             </MapContainer>
           </div>
           

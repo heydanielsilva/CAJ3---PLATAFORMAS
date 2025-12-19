@@ -16,6 +16,7 @@ export interface MapPoint {
   longitude: number;
   nome: string;
   descricao?: string;
+  aeg?: string;
 }
 
 export interface DashboardStats {

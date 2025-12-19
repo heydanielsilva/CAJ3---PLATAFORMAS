@@ -76,11 +76,11 @@ function parseMapCSV(csvText: string): MapPoint[] {
       const header = headers[idx];
       if (!header) return;
       
-      // Adapt based on expected spreadsheet column names
       if (header.includes('lat')) entry.latitude = parseFloat(cleanVal.replace(',', '.'));
       else if (header.includes('long')) entry.longitude = parseFloat(cleanVal.replace(',', '.'));
       else if (header.includes('nome')) entry.nome = cleanVal;
       else if (header.includes('desc')) entry.descricao = cleanVal;
+      else if (header === 'aeg') entry.aeg = cleanVal;
     });
     
     return entry as MapPoint;
