@@ -5,8 +5,17 @@ export interface Activity {
   tipo: string;
   status: string;
   data: string;
+  categoria?: string;
+  impeditivo?: string;
   prioridade?: string;
   responsavel?: string;
+}
+
+export interface MapPoint {
+  latitude: number;
+  longitude: number;
+  nome: string;
+  descricao?: string;
 }
 
 export interface DashboardStats {

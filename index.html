@@ -7,6 +7,7 @@
   <title>Platform Backlog Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -27,16 +28,49 @@
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
+
+    /* Simple Map Marker */
+    .map-marker {
+      width: 14px;
+      height: 14px;
+      background: #f36f21;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .map-marker:hover {
+      transform: scale(1.2);
+    }
+
+    /* Light Map Overrides */
+    .leaflet-container {
+      background: #f8fafc !important;
+      border-radius: 24px;
+    }
+    .leaflet-popup-content-wrapper {
+      background: white;
+      color: #1e293b;
+      border-radius: 12px;
+      padding: 4px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .leaflet-popup-tip {
+      background: white;
+    }
   </style>
 <script type="importmap">
 {
   "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "recharts": "https://esm.sh/recharts@^3.6.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3"
+    "react": "https://esm.sh/react@19.0.0",
+    "react/": "https://esm.sh/react@19.0.0/",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+    "recharts": "https://esm.sh/recharts@2.15.0?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.475.0?external=react",
+    "leaflet": "https://esm.sh/leaflet@1.9.4",
+    "react-leaflet": "https://esm.sh/react-leaflet@4.2.1?external=react,react-dom,leaflet",
+    "@google/genai": "https://esm.sh/@google/genai@1.34.0"
   }
 }
 </script>
